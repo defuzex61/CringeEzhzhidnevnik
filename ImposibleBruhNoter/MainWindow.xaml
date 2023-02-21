@@ -1,0 +1,95 @@
+﻿<Window x:Name="ImposibeBruhNotebook" x:Class="ImposibleBruhNoter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImposibleBruhNoter"
+        mc:Ignorable="d"
+        Title="ImposibeBruhNotebook" Height="325" Width="523" MinHeight="325" MinWidth="523">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyleTry" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" CornerRadius="5">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,0,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="89*"/>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="315*"/>
+            <ColumnDefinition Width="84*"/>
+            <ColumnDefinition Width="84*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <DatePicker x:Name="DateSelect" Margin="10,8,5,8" Grid.Column="1" RenderTransformOrigin="0.501,-0.496" Grid.ColumnSpan="3"/>
+        <Label Grid.RowSpan="7"/>
+        <Label Content="Название заметки:" Grid.Column="2" Margin="0,3,5,3" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="166"/>
+        <TextBox x:Name="nameNote" Grid.Column="2" Margin="10,2,5,4" Grid.Row="2" TextWrapping="Wrap" Text="" SelectionBrush="#FF8BCEF7" BorderBrush="White" Grid.ColumnSpan="2" />
+        <Label Content="Описание заметки:" Grid.Column="2" Margin="5,1,5,2" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="descriptionNote" Grid.Column="2" Margin="10,3,5,3" Grid.Row="4" TextWrapping="Wrap" Text="" SelectionBrush="#FF8BCEF7" BorderBrush="White" Grid.ColumnSpan="2"/>
+        <Button x:Name="ButtonDell" Style="{DynamicResource ButtonStyleTry}" Grid.Column="1" Content="Удалить запись" Grid.Row="6" Margin="5,0,12,9" Foreground="White" Background="#FF1C7DFF" BorderBrush="White" Click="ButtonDell_Click" Height="24" VerticalAlignment="Bottom"/>
+        <Button x:Name="ButtonCreate" Style="{DynamicResource ButtonStyleTry}" Grid.Column="2" Content="Создать" Grid.Row="6" Margin="4,0,5,9" Foreground="White" Background="#FF1C7DFF" BorderBrush="White" Click="ButtonCreate_Click" Height="24" VerticalAlignment="Bottom" />
+        <Button x:Name="ButtonSave" Style="{DynamicResource ButtonStyleTry}" Grid.Column="3" Content="Сохранить" Grid.Row="6" Margin="4,0,4,9" Foreground="White" Background="#FF1C7DFF" BorderBrush="White" Click="ButtonSave_Click" Height="24" VerticalAlignment="Bottom" />
+        <ListBox x:Name="labelBox" Grid.Column="1" Margin="10,3,5,31" Grid.RowSpan="5" Grid.Row="1" SelectionChanged="labelBox_SelectionChanged"/>
+    </Grid>
+</Window>
